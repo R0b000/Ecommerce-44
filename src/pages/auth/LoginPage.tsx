@@ -1,9 +1,10 @@
 import '../global.css'
 import { useNavigate } from 'react-router'
-import { useState, type BaseSyntheticEvent, type SyntheticEvent } from 'react'
+import { useState } from 'react'
 import SignInLeftInfo from '../../components/SignInLeftInfo'
 import FormButton from '../../components/FormButton'
 import type { ICredentials } from './auth.contract'
+import { useController, useForm } from 'react-hook-form'
 
 const LoginPage = () => {
     const [showMessage, setShowMessage] = useState(false)
@@ -17,25 +18,28 @@ const LoginPage = () => {
         navigate('/register')
     }
 
-    //core implementation without using the package
+    // const {register, handleSubmit, formState: {errors}} = useForm({
+    //     defaultValues: {
+    //         email: ""
+    //     } as ICredentials
+    // })
 
-    const [credentials, setCrediantials] = useState<ICredentials>({
-        email: ''
+    const { control, handleSubmit, formState: { errors } } = useForm({
+        defaultValues: {
+            email: ""
+        } as ICredentials
     })
 
-    const submitForm = (e: SyntheticEvent) => {
-        e.preventDefault()
+    const submitForm = (data: ICredentials) => {
+        console.log(data)
     }
 
-    const handleInputChange = (e: BaseSyntheticEvent) => {
-        const { name, value } = e.target
-        setCrediantials({
-            ...credentials,
-            [name]: value
-        })
-    }
+    const { field } = useController({
+        control: control,
+        name: 'email'
+    })
 
-    console.log(credentials)
+    console.log(errors)
 
     return (
         <>
@@ -44,12 +48,33 @@ const LoginPage = () => {
                 description='to continue to Gmail'
                 children={
                     <>
-                        <form className='flex flex-col gap-1' onSubmit={submitForm} action="">
+                        <form className='flex flex-col gap-1' onSubmit={handleSubmit(submitForm)} action="">
+                            {/* <input className='border p-2 rounded-md w-[496.4px] h-[52px]'
+                                type="email" 
+                                autoComplete='email'
+                                {...register('email', {required: true})}
+                                placeholder='Email or Phone' 
+                            /> */}
                             <input className='border p-2 rounded-md w-[496.4px] h-[52px]'
-                                type="email" autoComplete='email'
-                                onChange={handleInputChange}
+                                type="email"
+                                autoComplete='email'
+                                {...field}
+                                placeholder='Email or Phone'
+                            />
+                            {/* <Controller
+                                control={control}
                                 name='email'
-                                placeholder='Email or Phone' />
+                                render={(field) => (    
+                                    <>
+                                        <input className='border p-2 rounded-md w-[496.4px] h-[52px]'
+                                            type="email"
+                                            autoComplete='email'
+                                            {...field}
+                                            placeholder='Email or Phone'/>
+                                    </>
+                                )}
+                            ></Controller> */}
+
                             <div id='login-form-button'>
                                 <a style={{ color: "#84C2FA" }} className='w-max rounded-xl px-1' href="">Forget Email</a>
                             </div>
