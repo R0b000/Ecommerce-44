@@ -1,0 +1,32 @@
+#footer-links span:hover {
+    background-color: #2C2D2D
+}
+
+#footer-links select:hover {
+    background-color: #2C2D2D
+}
+
+#login-submit-button span:hover {
+    background-color: #141517
+}
+
+#login-submit-button ul li:hover {
+    background-color: #363737;
+    border-radius: 8px;
+}
+
+#login-submit-button ul li{
+    padding: 2px
+}
+
+#login-form-button a:hover {
+    background-color: #141517;
+}
+
+#homepage-more-logo:hover {
+    background-color: #DCE0E8;
+}
+
+#search-container input:hover {
+    scale: 100%;
+}
