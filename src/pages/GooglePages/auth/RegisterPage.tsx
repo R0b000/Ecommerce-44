@@ -1,6 +1,6 @@
 import { useState } from "react"
-import FormButton from "../../components/FormButton"
-import SignInLeftInfo from "../../components/SignInLeftInfo"
+import FormButton from "../../../components/FormButton"
+import SignInLeftInfo from "../../../components/SignInLeftInfo"
 
 const RegisterPage = () => {
     const [firstName, setFirstName] = useState("");

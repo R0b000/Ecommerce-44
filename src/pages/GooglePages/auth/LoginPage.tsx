@@ -1,10 +1,11 @@
 import '../global.css'
 import { useNavigate } from 'react-router'
 import { useState } from 'react'
-import SignInLeftInfo from '../../components/SignInLeftInfo'
-import FormButton from '../../components/FormButton'
-import type { ICredentials } from './auth.contract'
+import SignInLeftInfo from '../../../components/SignInLeftInfo'
+import FormButton from '../../../components/FormButton'
+import { AuthEmailValidation, type ICredentials } from './auth.contract'
 import { useController, useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 const LoginPage = () => {
     const [showMessage, setShowMessage] = useState(false)
@@ -27,7 +28,8 @@ const LoginPage = () => {
     const { control, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
             email: ""
-        } as ICredentials
+        } as ICredentials,
+        resolver: yupResolver(AuthEmailValidation)
     })
 
     const submitForm = (data: ICredentials) => {
@@ -61,6 +63,11 @@ const LoginPage = () => {
                                 {...field}
                                 placeholder='Email or Phone'
                             />
+                            {errors.email && (
+                                <p className="text-red-500 text-sm mt-1">
+                                    {errors.email.message}
+                                </p>
+                            )}
                             {/* <Controller
                                 control={control}
                                 name='email'

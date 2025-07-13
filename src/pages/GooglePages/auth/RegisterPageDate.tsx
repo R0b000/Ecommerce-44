@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import FormButton from "../../components/FormButton"
-import SignInLeftInfo from "../../components/SignInLeftInfo"
+import FormButton from "../../../components/FormButton"
+import SignInLeftInfo from "../../../components/SignInLeftInfo"
 
 const RegisterPageDate = () => {
     const [gender, setGender] = useState("");

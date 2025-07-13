@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router';
-import SignInFooter from '../../components/SignInFooter';
+import SignInFooter from '../../../components/SignInFooter';
 import GoogleLogo from '../../assets/images/Google__G__logo.svg.png'
 
 const AuthLayout = () => {

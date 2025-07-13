@@ -1,13 +1,15 @@
-import { useNavigate } from "react-router";
-import FormButton from "../../components/FormButton"
-import SignInLeftInfo from "../../components/SignInLeftInfo"
+import { useController, type useForm } from "react-hook-form"
+import FormButton from "../../../components/FormButton"
+import SignInLeftInfo from "../../../components/SignInLeftInfo"
+import { AuthPasswordValidation, type ICredentialsPassword } from "./auth.contract"
+import { yupResolver } from "@hookform/resolvers/yup"
 
 const RegisterPageEmail = () => {
-    const navigate = useNavigate();
 
-    const handleNextOnClick = () => {
-        navigate('/')
-    }
+    // const submitForm = (data: ICredentialsPassword) => {
+    //     console.log(data)
+    // }
+
     return (
         <>
             <SignInLeftInfo
@@ -44,9 +46,9 @@ const RegisterPageEmail = () => {
                                                 type="submit"
                                                 style={{ backgroundColor: '#B6D0FB', color: "#062E6F" }}
                                                 className="flex rounded-3xl justify-center items-center w-[78.45px] h-[48px] cursor-pointer mt-[-16px]"
-                                        >
-                                            Next
-                                        </button>
+                                            >
+                                                Next
+                                            </button>
                                         </div>
                                     </>
                                 }
